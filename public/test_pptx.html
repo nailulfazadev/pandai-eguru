@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS@3.12.0/dist/pptxgen.bundle.js"></script>
+</head>
+<body>
+    <script>
+        const pptx = new PptxGenJS();
+        
+        let slide1 = pptx.addSlide();
+        slide1.background = { fill: '58CC02' };
+        slide1.addText('Slide 1', { x: 1, y: 1, w: 5, h: 1, color: 'FFFFFF' });
+        
+        let slide2 = pptx.addSlide();
+        slide2.background = { fill: 'FAFAFB' };
+        slide2.addText('Slide 2', { x: 1, y: 1, w: 5, h: 1, color: '000000' });
+        
+        console.log("PPTX Slide 1 background:", slide1.background);
+        console.log("PPTX Slide 2 background:", slide2.background);
+        
+        pptx.writeFile({ fileName: 'test.pptx' }).then(() => {
+            console.log("Export successful");
+        }).catch(err => {
+            console.error("Export error:", err);
+        });
+    </script>
+</body>
+</html>
