@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('journals', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('classroom_id')->constrained()->onDelete('cascade');
             $table->date('date');

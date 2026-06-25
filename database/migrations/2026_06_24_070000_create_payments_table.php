@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             if (!Schema::hasColumn('users', 'is_admin')) {
                 $table->boolean('is_admin')->default(false)->after('email');
             }
         });
 
         Schema::create('payments', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('paket'); // 'semester' or 'tahunan'
@@ -36,6 +38,7 @@ return new class extends Migration
         Schema::dropIfExists('payments');
         
         Schema::table('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             if (Schema::hasColumn('users', 'is_admin')) {
                 $table->dropColumn('is_admin');
             }
