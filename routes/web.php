@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/pembayaran/{id}/reject', [\App\Http\Controllers\AdminController::class, 'reject'])->name('admin.payments.reject');
     Route::get('/admin/masukan', [\App\Http\Controllers\AdminController::class, 'feedbacks'])->name('admin.feedbacks');
     Route::post('/admin/masukan/{id}/balas', [\App\Http\Controllers\AdminController::class, 'replyFeedback'])->name('admin.feedbacks.reply');
-
+    Route::resource('/admin/packages', \App\Http\Controllers\PackageController::class)->names('admin.packages');
     // Document Archiving & Downloading
     Route::get('/riwayat', [DocumentController::class, 'index'])->name('documents.index');
     Route::get('/documents/{id}/download', [DocumentController::class, 'downloadDoc'])->name('documents.download');

@@ -85,7 +85,9 @@ class AdminController extends Controller
             $payment->save();
 
             $user = $payment->user;
-            $days = ($payment->paket === 'semester') ? 180 : 365;
+            
+            $package = \App\Models\Package::where('slug', $payment->paket)->first();
+            $days = $package ? $package->duration_days : ($payment->paket === 'semester' ? 180 : 365); // Fallback if package deleted
             
             $user->subscription_tier = $payment->paket;
             $user->subscription_ends_at = now()->addDays($days);
